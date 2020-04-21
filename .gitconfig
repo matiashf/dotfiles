@@ -1,0 +1,32 @@
+[include]
+	path = ~/.gitconfig.local
+[alias]
+	st = status --short --show-stash --untracked-files=normal
+	adp = "add --patch"
+	graph = "log --graph --oneline"
+	cob = checkout -b
+	co = checkout
+	cdiff = diff --cached
+	amend = commit --amend
+	ic = !git rev-parse HEAD >/dev/null 2>&1 || git commit --allow-empty -m \"Initial commit\"
+  civp= !git civ && git push
+	civ = commit --verbose
+	bd = branch -d
+	bdd = branch -D
+	b = branch
+	ci = commit
+	cp = cherry-pick
+	d = diff
+	cd = diff --cached
+	dcm = diff --cached master
+	cdm = diff --cached master
+	com = checkout master
+	hello = !echo Hello, World
+[fetch]
+	prune = true
+	pruneTags = true
+[core]
+	hooksPath = /home/matiashf/.githooks
+	editor = atom --wait
+[push]
+	default = current
