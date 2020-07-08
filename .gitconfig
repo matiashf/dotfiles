@@ -1,7 +1,11 @@
+[user]
+	name = Matias Hermanrud Fjeld
+	email = matiashf@gmail.com
+	signingkey = E3950706A2E214E4
 [include]
 	path = ~/.gitconfig.local
 [alias]
-	st = status --short --show-stash --untracked-files=normal
+	st = status --short --show-stash
 	adp = "add --patch"
 	graph = "log --graph --oneline"
 	cob = checkout -b
@@ -22,11 +26,45 @@
 	cdm = diff --cached master
 	com = checkout master
 	hello = !echo Hello, World
+	ada = add --all
+	prune-remote = !(git remote | xargs git remote prune)
+	sync = !git pull -q && git push && git prune-remote
+	local-changes = log ORIG_HEAD.. --no-merges
+	lc = local-changes
+	graph = log --graph --oneline --all --decorate
+	authors = !git log --all --pretty=format:'%aN <%aE>' | sort -u
+	unmerged = branch -a --no-merged
+	merged = branch -a --merged
+	pending = !git log ^HEAD $(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))
+
+	brief = log --pretty='format:%Cred%h%Creset %s %Cgreen(%ad)%Cblue by %aN <%aE>%Creset' --date=relative --reverse --no-merges
+	mine = !git brief --author=\"<$(git config user.email)>\"
+	others = !git brief $(git log --pretty=format:%ae | sort -u | grep -v $(git config user.email) | ruby -ne '$_.gsub(/^(.+)$/) {|a| print %{--author="<#{a}>" } }') --all
+	recent = !git brief --since="$(date -d yesterday --iso)"
+	weekend = !git mine --since='last saturday' --date=iso
+	whatsnew = !git others --since=\"$(git log --author=\"<$(git config user.email)>\" --before=\"1 days ago\" -1 --pretty=format:%ad)\" --all
+	today = !git mine --since=midnight --all
+	yesterday = !git mine --since=yesterday --all
+	branch-log = !git log $(git merge-base master HEAD)..HEAD
+
+	last-version = !git describe --match 'v*.*.*' --tags --abbrev=0
+	push-last-version = !git push origin `git last-version`
+	since-last-version = !git log --reverse --pretty=oneline --abbrev-commit --no-merges HEAD ^$(git last-version)
+	since-last-version-shortlog = !git shortlog -n -e --no-merges HEAD ^$(git last-version)
+
+	interesting-branches = !(git branch | grep -E '(^\\*|\\[.+\\]$)')
 [fetch]
 	prune = true
 	pruneTags = true
 [core]
 	hooksPath = /home/matiashf/.githooks
 	editor = atom --wait
+	pager = less -FRSX
 [push]
 	default = current
+[log]
+	date = iso
+[status]
+	submodulesummary = true
+[commit]
+	gpgsign = true
