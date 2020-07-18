@@ -13,6 +13,14 @@ cd "$(dirname "$0")"
   || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 [ -d ~/.pyenv ] || git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+PYTHON_VERSION="$(ls ~/.pyenv/plugins/python-build/share/python-build | grep -E "^[0-9]+\.[0-9]+\.[0-9]+$" | sort -n | tail -n 1)"
+pyenv install --skip-existing "$PYTHON_VERSION"
+pyenv global "$PYTHON_VERSION"
+
+pip install pipenv
 
 # Install pulumi
 which pulumi || (curl -fsSL https://get.pulumi.com | sh)
