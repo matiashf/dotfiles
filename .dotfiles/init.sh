@@ -13,3 +13,6 @@ cd "$(dirname "$0")"
   || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 [ -d ~/.pyenv ] || git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+# Install pulumi
+which pulumi || (curl -fsSL https://get.pulumi.com | sh)
