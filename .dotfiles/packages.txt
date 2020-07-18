@@ -17,3 +17,9 @@ tk-dev
 libffi-dev
 liblzma-dev
 python-openssl
+rename
+sl
+htop
+aptitude
+gpg
+pass
