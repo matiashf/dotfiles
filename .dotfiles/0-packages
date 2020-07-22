@@ -2,5 +2,5 @@
 
 cd "$(dirname "$0")"
 
-(cat packages.txt | xargs dpkg -s > /dev/null) \
-  || (cat packages.txt | xargs --verbose sudo apt install -y)
+(grep -vE "^[[:space:]]*(#|$)" packages.txt | xargs dpkg -s > /dev/null) \
+  || (grep -vE "^[[:space:]]*(#|$)" packages.txt | xargs --verbose sudo apt install -y)

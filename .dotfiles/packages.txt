@@ -1,7 +1,13 @@
+# Utilities used for bootstrapping
 curl
 git
+jq
+
+# My shell
 zsh
 zsh-doc
+
+# Python build dependencies
 build-essential
 libssl-dev
 zlib1g-dev
@@ -17,5 +23,6 @@ tk-dev
 libffi-dev
 liblzma-dev
 python-openssl
+
+# Tools I use for development
 inotify-tools
-jq
