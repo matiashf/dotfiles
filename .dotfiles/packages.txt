@@ -26,3 +26,6 @@ python-openssl
 
 # Tools I use for development
 inotify-tools
+
+# Fonts for the agnoster oh-my-zsh theme
+fonts-powerline
