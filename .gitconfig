@@ -61,7 +61,7 @@
 	editor = atom --wait
 	pager = less -FRSX
 [push]
-	default = current
+	default = simple
 [log]
 	date = iso
 [status]
