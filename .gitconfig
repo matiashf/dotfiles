@@ -53,6 +53,7 @@
 	since-last-version-shortlog = !git shortlog -n -e --no-merges HEAD ^$(git last-version)
 
 	interesting-branches = !(git branch | grep -E '(^\\*|\\[.+\\]$)')
+	pushup = !git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\"
 [fetch]
 	prune = true
 	pruneTags = true
