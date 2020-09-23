@@ -1,7 +1,21 @@
+# Basics
+rename
+sl
+htop
+aptitude
+gpg
+pass
+
+# Utilities used for bootstrapping
 curl
 git
+jq
+
+# My shell
 zsh
 zsh-doc
+
+# Python build dependencies
 build-essential
 libssl-dev
 zlib1g-dev
@@ -17,9 +31,9 @@ tk-dev
 libffi-dev
 liblzma-dev
 python-openssl
-rename
-sl
-htop
-aptitude
-gpg
-pass
+
+# Tools I use for development
+inotify-tools
+
+# Fonts for the agnoster oh-my-zsh theme
+fonts-powerline

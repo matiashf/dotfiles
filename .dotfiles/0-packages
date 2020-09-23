@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+cd "$(dirname "$0")"
+
+(grep -vE "^[[:space:]]*(#|$)" packages.txt | xargs dpkg -s > /dev/null) \
+  || (grep -vE "^[[:space:]]*(#|$)" packages.txt | xargs --verbose sudo apt install -y)

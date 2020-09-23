@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+KOPS_VERSION=$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | jq -er .tag_name)
+KOPS_PATH=~/.local/bin/kops
+curl -sLo "$KOPS_PATH" "https://github.com/kubernetes/kops/releases/download/$KOPS_VERSION/kops-linux-amd64"
+chmod +x "$KOPS_PATH"
