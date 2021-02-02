@@ -10,6 +10,7 @@ pass
 curl
 git
 jq
+software-properties-common
 
 # My shell
 zsh
