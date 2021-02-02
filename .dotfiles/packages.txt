@@ -30,7 +30,7 @@ xz-utils
 tk-dev
 libffi-dev
 liblzma-dev
-python-openssl
+python3-openssl
 
 # Tools I use for development
 inotify-tools
