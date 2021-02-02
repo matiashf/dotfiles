@@ -34,6 +34,7 @@ python3-openssl
 
 # Tools I use for development
 inotify-tools
+direnv
 
 # Fonts for the agnoster oh-my-zsh theme
 fonts-powerline
