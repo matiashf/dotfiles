@@ -1,6 +1,6 @@
 [user]
 	name = Matias Hermanrud Fjeld
-	email = matiashf@gmail.com
+	email = matias.fjeld@kolonial.no
 	signingkey = E3950706A2E214E4
 [include]
 	path = ~/.gitconfig.local
@@ -61,6 +61,7 @@
 	hooksPath = /home/matiashf/.githooks
 	editor = atom --wait
 	pager = less -FRSX
+	excludesfile = /home/matiashf/.gitignore_global
 [push]
 	default = simple
 [log]
