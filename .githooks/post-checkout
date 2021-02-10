@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+pre-commit autoupdate
+
+# Install dependencies if lockfile changed
+test -e poetry.lock
+CHECKSUM_FILE=".poetry.lock.sha512sum"
+touch "$CHECKSUM_FILE"
+if [ "$(cat "$CHECKSUM_FILE")" != "$(sha512sum poetry.lock)" ]
+then
+  poetry install --no-proj
+  sha512sum poetry.lock > "$CHECKSUM_FILE"
+fi
