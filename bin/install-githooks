@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+
+test -d ~/.githooks/
+test -d .git/hooks
+
+find -L ~/.githooks -type f -executable | while read target
+do
+  link_name=".git/hooks/$(basename $target)"
+  if test ! -e "$link_name"
+  then
+    ln -s "$target" "$link_name"
+    echo "✅ $link_name -> $target"
+  elif test -L "$link_name" && test "$(readlink "$link_name")" == "$target"
+  then
+    echo "   $link_name -> $target"
+  else
+    echo "⛔ $link_name"
+  fi
+done
