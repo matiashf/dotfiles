@@ -58,7 +58,6 @@
 	prune = true
 	pruneTags = true
 [core]
-	hooksPath = /home/matiashf/.githooks
 	editor = atom --wait
 	pager = less -FRSX
 	excludesfile = /home/matiashf/.gitignore_global
