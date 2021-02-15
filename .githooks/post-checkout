@@ -10,6 +10,6 @@ CHECKSUM_FILE=".poetry.lock.sha512sum"
 touch "$CHECKSUM_FILE"
 if [ "$(cat "$CHECKSUM_FILE")" != "$(sha512sum poetry.lock)" ]
 then
-  poetry install --no-proj
+  poetry install --no-root
   sha512sum poetry.lock > "$CHECKSUM_FILE"
 fi
