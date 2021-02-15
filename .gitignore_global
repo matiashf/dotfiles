@@ -1,3 +1,4 @@
 .tags
 .poetry.lock.sha512sum
 .tags_swap
+.migrations.local

@@ -13,3 +13,14 @@ then
   poetry install --no-root
   sha512sum poetry.lock > "$CHECKSUM_FILE"
 fi
+
+# Apply migrations
+test -e manage.py
+MIGRATIONS_FILE=".migrations.local"
+touch "$MIGRATIONS_FILE"
+MIGRATIONS="$(git ls-files '**/migrations/*.py' | sort)"
+if [ "$(cat "$MIGRATIONS_FILE")" != "$MIGRATIONS" ]
+then
+  ./manage.py migrate
+  echo "$MIGRATIONS" > "$MIGRATIONS_FILE"
+fi
