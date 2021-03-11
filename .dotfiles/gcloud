@@ -1,3 +1,0 @@
-#!/bin/sh -eux
-
-which gcloud || snap install google-cloud-sdk --classic

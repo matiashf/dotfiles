@@ -1,4 +1,0 @@
-#!/bin/sh -eux
-
-curl -sL "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" \
-  | tar --gunzip --extract --directory ~/.local/bin/ eksctl

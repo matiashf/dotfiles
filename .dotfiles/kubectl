@@ -1,6 +1,0 @@
-#!/bin/sh -eux
-
-KUBECTL_VERSION="$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)"
-KUBECTL_PATH=~/.local/bin/kubectl
-curl -sLo "$KUBECTL_PATH" "https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
-chmod +x "$KUBECTL_PATH"
