@@ -1,0 +1,8 @@
+#!/bin/sh -eux
+
+if [ ! -e ~/.asdf ]
+then
+    git clone --quiet https://github.com/asdf-vm/asdf.git ~/.asdf
+    cd ~/.asdf
+    git checkout --quiet "$(git describe --abbrev=0 --tags)"
+fi

@@ -69,7 +69,10 @@ ZSH_CUSTOM="$HOME/.zshrc.d"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    git
+    asdf
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,4 +102,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval "$(direnv hook zsh)"
+eval "$(asdf exec direnv hook "$(basename "$SHELL")")"
