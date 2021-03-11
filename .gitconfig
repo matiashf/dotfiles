@@ -59,7 +59,7 @@
 	prune = true
 	pruneTags = true
 [core]
-	editor = atom --wait
+	editor = code --wait
 	pager = less -FRSX
 	excludesfile = /home/matiashf/.gitignore_global
 [push]
