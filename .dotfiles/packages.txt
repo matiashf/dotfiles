@@ -41,3 +41,7 @@ kibana-oss
 
 # Fonts for the agnoster oh-my-zsh theme
 fonts-powerline
+
+# Some useful tools to tweak my Gnome environment
+gnome-tweak-tool
+dconf-editor
