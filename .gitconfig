@@ -1,6 +1,6 @@
 [user]
 	name = Matias Hermanrud Fjeld
-	email = matias.fjeld@kolonial.no
+	email = matias.fjeld@oda.com
 	signingkey = E3950706A2E214E4
 [include]
 	path = ~/.gitconfig.local
