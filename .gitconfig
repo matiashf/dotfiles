@@ -55,6 +55,7 @@
 	interesting-branches = !(git branch | grep -E '(^\\*|\\[.+\\]$)')
 	pushup = !git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\"
 	coma = checkout main
+	ph = pull origin HEAD
 [fetch]
 	prune = true
 	pruneTags = true
@@ -70,3 +71,5 @@
 	submodulesummary = true
 [commit]
 	gpgsign = true
+[pull]
+	ff = only
