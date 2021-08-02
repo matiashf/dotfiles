@@ -1,1 +1,139 @@
-post-checkout
+#!/usr/bin/env python3
+
+import logging
+import mmap
+from abc import ABC as AbstractBaseClass
+from abc import abstractproperty
+from hashlib import sha512
+from pathlib import Path
+from subprocess import check_call as _check_call, check_output
+from typing import Callable, Iterable, List, Optional
+
+logger = logging.Logger(__name__)
+logger.setLevel(logging.INFO)
+
+Hook = Callable[[Path], None]
+registry: List[Hook] = []
+
+
+def register(hook: Hook) -> Hook:
+    registry.append(hook)
+    return hook
+
+
+def check_call(command, *args, **kwargs):
+    logger.info(" ".join(command))
+    return _check_call(command, *args, **kwargs)
+
+class SignatureCache(AbstractBaseClass):
+    @abstractproperty
+    def cache_path(self):
+        raise NotImplementedError
+
+    @abstractproperty
+    def new_signature(self) -> str:
+        raise NotImplementedError
+
+    @property
+    def old_signature(self) -> Optional[str]:
+        if not self.cache_path.exists():
+            return None
+        return self.cache_path.read_text()
+
+    @property
+    def dirty(self) -> bool:
+        old_signature = self.old_signature
+        return old_signature is None or old_signature != self.new_signature
+
+    def clean(self) -> None:
+        self.cache_path.write_text(self.new_signature)
+
+
+class ChecksumCache(SignatureCache):
+    target: Path
+
+    def __init__(self, target):
+        self.target = target
+
+    @property
+    def cache_path(self) -> Path:
+        return self.target.parent / f".post-commit-cache-{self.target.name}"
+
+    @property
+    def new_signature(self) -> str:
+        with self.target.open("rb") as f:
+            mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
+            return sha512(mm).hexdigest()
+
+
+class ImmutableFilesCache(SignatureCache):
+    _new_signature: str
+    _cache_path: Path
+
+    def __init__(self, targets: Iterable[str], cache_path: Path):
+        self._new_signature = "\n".join(sorted(str(p) for p in targets))
+        self._cache_path = cache_path
+
+    @property
+    def new_signature(self) -> str:
+        return self._new_signature
+
+    @property
+    def cache_path(self) -> Path:
+        return self._cache_path
+
+@register
+def pre_commit(repo: Path):
+    pre_commit_config = repo / ".pre-commit-config.yaml"
+    if not pre_commit_config.exists():
+        return
+    cache = ChecksumCache(pre_commit_config)
+    if cache.dirty:
+        check_call(["pre-commit", "autoupdate"])
+        cache.clean()
+
+
+@register
+def poetry(repo: Path):
+    poetry_lock = repo / "poetry.lock"
+    if not poetry_lock.exists():
+        return
+    cache = ChecksumCache(poetry_lock)
+    if cache.dirty:
+        check_call(["poetry", "install", "--no-root"])
+        cache.clean()
+
+
+@register
+def npm(repo: Path):
+    npm_lock = repo / "package-lock.json"
+    if not npm_lock.exists():
+        return
+    cache = ChecksumCache(npm_lock)
+    if cache.dirty:
+        check_call(["npm", "install"])
+        cache.clean()
+
+
+@register
+def django_migrations(repo: Path):
+    output = check_output(["git", "ls-files", "**/migrations/*.py"], encoding="utf-8")
+    migrations = output.rstrip("\n").split("\n")
+    if not any(migrations):
+        return
+    cache = ImmutableFilesCache(migrations, repo / ".post-commit-cache-django-migrations")
+    if cache.dirty:
+        check_call(["./manage.py", "migrate"])
+        cache.clean()
+
+
+def main():
+    # logger.setLevel()
+    repo = Path.cwd()
+
+    for hook in registry:
+        hook(repo)
+
+
+if __name__ == "__main__":
+    main()
