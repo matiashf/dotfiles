@@ -72,7 +72,12 @@ ZSH_CUSTOM="$HOME/.zshrc.d"
 plugins=(
     git
     asdf
+    kubectl
+    kube-ps1
 )
+
+# Right side prompt
+export RPS1='$(kube_ps1)'
 
 source $ZSH/oh-my-zsh.sh
 
