@@ -1,4 +1,9 @@
 python 3.9.1
-poetry 1.1.0
+poetry 1.1.5
 direnv 2.27.0
 kubectl 1.20.0
+gcloud 332.0.0
+kustomize 4.0.5
+k9s 0.24.4
+nodejs 14.16.0
+terraform 1.0.0
