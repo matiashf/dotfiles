@@ -24,7 +24,7 @@
 	cd = diff --cached
 	dcm = diff --cached master
 	cdm = diff --cached master
-	com = checkout master
+	com = checkout main
 	hello = !echo Hello, World
 	ada = add --all
 	prune-remote = !(git remote | xargs git remote prune)
@@ -54,8 +54,11 @@
 
 	interesting-branches = !(git branch | grep -E '(^\\*|\\[.+\\]$)')
 	pushup = !git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\"
-	coma = checkout main
-	ph = pull origin HEAD
+	ph = pull --ff origin HEAD
+	base = merge-base origin/HEAD HEAD
+	diffbase = !git diff "$(git base)"
+	db = diffbase
+	blog = !git log "$(git base)"..HEAD
 [fetch]
 	prune = true
 	pruneTags = true
