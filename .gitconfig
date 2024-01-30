@@ -17,8 +17,9 @@
 	civ = commit --verbose
 	bd = branch -d
 	bdd = branch -D
-	b = branch
+	b = branch --sort=committerdate
 	ci = commit
+	cin = commit --no-verify
 	cp = cherry-pick
 	d = diff
 	cd = diff --cached
@@ -76,3 +77,10 @@
 	gpgsign = true
 [pull]
 	ff = only
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
