@@ -70,10 +70,7 @@ ZSH_CUSTOM="$HOME/.zshrc.d"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    asdf
-    kubectl
-    kube-ps1
+    zsh-autosuggestions
 )
 
 # Right side prompt
@@ -107,4 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval "$(asdf exec direnv hook "$(basename "$SHELL")")"
+# RTX, a tool that configures PATH and other environment variables on cd
+eval "$(~/bin/rtx activate zsh)"
+
+# Starship, a custom prompt
+eval "$(starship init zsh)"
