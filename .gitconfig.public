@@ -1,9 +1,6 @@
 [user]
 	name = Matias Hermanrud Fjeld
-	email = matias.fjeld@oda.com
-	signingkey = E3950706A2E214E4
-[include]
-	path = ~/.gitconfig.local
+	email = matiashf@gmail.com
 [alias]
 	st = status --short --show-stash
 	adp = "add --patch"
@@ -66,7 +63,8 @@
 [core]
 	editor = code --wait
 	pager = less -FRSX
-	excludesfile = /home/matiashf/.gitignore_global
+	excludesfile = /home/matiashf/.gitignore
+
 [push]
 	default = simple
 [log]

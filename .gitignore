@@ -1,1 +1,4 @@
-/.gitconfig.local
+/.gitconfig
+.tags
+.tags_swap
+.post-commit-cache-*
