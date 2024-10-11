@@ -19,4 +19,6 @@ if status is-interactive
     alias rm="rm -i"
 
     export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+    mise activate fish | source
 end
