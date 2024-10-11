@@ -5,12 +5,14 @@ This repository manages my dotfiles with git, inspired by
 
 ## Bootstrapping a new machine
 
+* Fish: `apt install fish && chsh -s /usr/bin/fish`
 * [Chrome](https://www.google.com/chrome/)
 * [GitHub CLI](https://cli.github.com/) + `gh auth login` + Add [GitHub's SSH key fingerprints](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)
 * [VSCode](https://code.visualstudio.com/) + turn on sync with github account
-* Zsh: `apt install zsh && chsh -s /usr/bin/zsh`
 * [Starship](https://starship.rs/)
 * [Mise](https://github.com/jdx/mise)
+* [FlyteCTL](https://docs.flyte.org/en/latest/api/flytectl/overview.html)
+* [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
 ```
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles.git/" --work-tree="$HOME"'

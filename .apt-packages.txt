@@ -35,12 +35,7 @@ python3-openssl
 
 # Tools I use for development
 inotify-tools
-direnv
 git-gui
-kibana-oss
-
-# Fonts for the agnoster oh-my-zsh theme
-fonts-powerline
 
 # Some useful tools to tweak my Gnome environment
 gnome-tweak-tool
@@ -59,22 +54,14 @@ ca-certificates
 clang
 cmake
 console-setup
-containerd.io
 coreutils
 cpu-checker
-cryptsetup
-cryptsetup-bin
-cryptsetup-initramfs
-cryptsetup-run
 curl
 dash
 dconf-editor
 diffutils
 dirmngr
 dmeventd
-docker-ce
-docker-ce-cli
-docker-compose-plugin
 e2fsprogs
 efibootmgr
 faketime
@@ -135,7 +122,6 @@ language-pack-gnome-en
 language-pack-gnome-en-base
 language-pack-gnome-nb
 language-pack-nb
-libaio1
 libbz2-dev
 libc6
 libdebconfclient0
@@ -168,9 +154,6 @@ libvirt-clients
 libvirt-daemon-system
 libzfs4linux
 libzpool5linux
-linux-generic
-linux-generic-hwe-20.04
-linux-generic-hwe-22.04
 llvm
 locales
 login
@@ -194,11 +177,8 @@ pass
 pavucontrol
 pciutils
 pipewire-audio-client-libraries
-pipewire-media-session
 poppler-data
-postgresql-14
 powertop
-python3-distutils
 python3-openssl
 python3-pydrive
 qemu-system-x86
@@ -209,7 +189,6 @@ shellcheck
 shim
 shim-signed
 sl
-slack-desktop
 smem
 software-properties-common
 thin-provisioning-tools

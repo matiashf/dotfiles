@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+APT_PACKAGES_TXT=~/.apt-packages.txt
+
+(grep -vE "^[[:space:]]*(#|$)" $APT_PACKAGES_TXT | xargs dpkg -s > /dev/null) \
+  || (grep -vE "^[[:space:]]*(#|$)" $APT_PACKAGES_TXT | xargs --verbose sudo apt install -y)
