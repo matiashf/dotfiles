@@ -13,6 +13,7 @@ This repository manages my dotfiles with git, inspired by
 * [Mise](https://github.com/jdx/mise)
 * [FlyteCTL](https://docs.flyte.org/en/latest/api/flytectl/overview.html)
 * [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+* [rustup](https://rustup.rs/)
 
 ```
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles.git/" --work-tree="$HOME"'

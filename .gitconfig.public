@@ -63,7 +63,7 @@
 [core]
 	editor = code --wait
 	pager = less -FRSX
-	excludesfile = /home/matiashf/.gitignore
+	excludesfile = ~/.gitignore
 
 [push]
 	default = simple
