@@ -1,7 +1,0 @@
-[tools]
-python = '3.11'
-poetry = '1.5'
-#kubectl = '1.24'
-#gcloud = '403'
-#nodejs = 'lts'
-#terraform = '1'

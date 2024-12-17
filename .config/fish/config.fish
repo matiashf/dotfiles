@@ -8,17 +8,14 @@ if status is-interactive
     alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles.git/" --work-tree="$HOME"'
     abbr --add .f dotfiles # Interactive expansion while typing
 
-    set EDITOR "code" # VSCode
-
-    set LESS "-FRXS" # Tailor less for interactive use
-
     # Password generation -- this might need some bugfixing
     abbr --add pwgen shuf -n 4 /usr/share/dict/words | tr '[:upper:]' '[:lower:]' | sed "s/'s\$//" | tr '\n' ' '; echo
 
     # I made a horrible mistake once. Never again.
     alias rm="rm -i"
 
-    export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-    mise activate fish | source
+    # Several environment variables and PATH are configured in ~/.config/mise/config.toml
+    ~/.local/bin/mise activate fish | source
+else # Non-interactive, i.e. a script
+    ~/.local/bin/mise activate fish --shims | source
 end

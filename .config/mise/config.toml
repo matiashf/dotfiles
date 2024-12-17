@@ -1,0 +1,19 @@
+[env]
+EDITOR="code" # VSCode
+LESS="-FRXS" # Tailor less for interactive use
+_.path = [
+    "~/bin",
+    "~/.local/bin",
+    "~/.cargo/bin",
+]
+
+[settings]
+disable_hints = ["python_multi"]
+
+[settings.status]
+show_env = true
+show_tools = true
+
+[tools]
+"ubi:cli/cli" = { version = "latest", exe = "gh" } # GitHub CLI "gh"
+"ubi:astral-sh/uv" = "latest" # Python package installer (pip successor)
